@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearch } from "./features/searchSlice";
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [search, setSearch] = useState("");
+  const search = useSelector((state) => state.search);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -40,7 +43,7 @@ function App() {
           class="w-full mt-10 md:mt-0 border-black border-2 p-2.5 focus:outline-none focus:shadow-[2px_2px_0px_rgba(0,0,0,1)]  active:shadow-[2px_2px_0px_rgba(0,0,0,1)] rounded-md"
           placeholder="Search Movie"
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => dispatch(setSearch(e.target.value))}
         />
       </section>
       </div>
