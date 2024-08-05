@@ -37,8 +37,8 @@ function App() {
         <h1 className="font-bold text-3xl text-white">AboutFilm</h1>
         <section className="w-96">
         <input
-          class="w-full mt-10 md:mt-0 border-black border-2 p-2.5 focus:outline-none focus:shadow-[2px_2px_0px_rgba(0,0,0,1)] focus:bg-[#ffe7c2] active:shadow-[2px_2px_0px_rgba(0,0,0,1)] rounded-md"
-          placeholder="Cari Film"
+          class="w-full mt-10 md:mt-0 border-black border-2 p-2.5 focus:outline-none focus:shadow-[2px_2px_0px_rgba(0,0,0,1)]  active:shadow-[2px_2px_0px_rgba(0,0,0,1)] rounded-md"
+          placeholder="Search Movie"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
@@ -46,7 +46,6 @@ function App() {
       </div>
       {/* Main Section */}
       <section className="p-10">
-        {/* Input section */}
      
       {/* Popular Movies */}
       <h1 className="mt-10 mb-10 text-3xl font-bold">Popular Movies</h1>

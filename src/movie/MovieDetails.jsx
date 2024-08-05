@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const MovieDetails = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
+  const [reccomendation, setReccomendation] = useState([]);
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -16,10 +17,22 @@ const MovieDetails = () => {
             },
           }
         );
-        console.log("Bearer Token:", process.env);
-
         const data = await response.json();
         setMovie(data);
+
+        // Reccomendation
+
+        const recMovie = await fetch(
+          `https://api.themoviedb.org/3/movie/${id}/recommendations?language=en-US`,
+          {
+            headers: {
+              Authorization: `Bearer ${process.env.REACT_APP_TMDB_BEARER_TOKEN}`,
+            },
+          }
+        );
+        const recData = await recMovie.json();
+        setReccomendation(recData.results);
+        console.log("reccomendation", recData.results);
       } catch (error) {
         console.error("Fetch error:", error);
       }
@@ -39,7 +52,11 @@ const MovieDetails = () => {
         backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})`,
       }}
     >
-      <div className="absolute md:flex gap-5 p-10 inset-0 bg-black/70">
+      
+      <div className="absolute md:flex gap-5 p-5 inset-0 bg-black/70">
+        <Link to="/">
+        <img className="w-10 bg-white rounded-full mb-5" src="/back-arrow.svg" alt="back arrow" />  
+        </Link>
         <img
           className="border-black border-2 rounded-md"
           src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
@@ -57,8 +74,32 @@ const MovieDetails = () => {
         </div>
       </div>
     </section>
-    <section>
-
+    <section className="bg-black p-10">
+      <h1 className="text-white mb-10 text-2xl font-bold">Another Movie Reccomendation</h1>
+      <div className="md:flex gap-16">
+        {reccomendation.slice(0, 7).map((movie) => (
+          <Link to={`/movie/${movie.id}`}>
+            <div className="w-full md:w-52 h-full mb-5 border-2 border-white text-white rounded-md hover:shadow-[8px_8px_0px_rgba(0,0,0,1)]">
+            <a href="" class="block cursor-pointer">
+              <article class="w-full h-full">
+                <figure class="w-full h-1/2 border-black border-b-2">
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                    alt={movie.title}
+                    class="w-full h-52 object-cover"
+                  />
+                </figure>
+                <div class="px-6 py-5 text-left h-full">
+                  <p class="text-base mb-4 bg-blue-400 p-3 rounded-md w-fit">{movie.release_date}</p>
+                  <h1 class="text-xl font-bold">{movie.title}</h1>
+                  
+                </div>
+              </article>
+            </a>
+          </div>
+          </Link>
+        ))}
+      </div>
     </section>
     </>
   );
