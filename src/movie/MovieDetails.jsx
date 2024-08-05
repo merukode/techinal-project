@@ -32,6 +32,7 @@ const MovieDetails = () => {
   }
 
   return (
+    <>
     <section
       className=" relative w-full h-screen bg-cover bg-center"
       style={{
@@ -46,12 +47,20 @@ const MovieDetails = () => {
         />
         <div className="md:flex text-white md:flex-col">
           <p className="font-bold mt-3 text-gray-400">{movie.release_date}</p>
-          <h1 className="text-3xl mt-5 font-bold mb-5">{movie.title}</h1>
-          <p>{movie.overview}</p>
-          
+          <h1 className="md:text-5xl mt-5 font-bold mb-5">{movie.title}</h1>
+          <p className="md:text-2xl md:w-[25em]">{movie.overview}</p>
+          <span className="flex gap-5 mt-5">
+            {movie.genres.slice(0, 3).map((genre) => (
+              <p className="p-2 border-2 border-white rounded-lg hover:bg-white hover:text-black">{genre.name}</p>
+            ))}
+          </span>
         </div>
       </div>
     </section>
+    <section>
+
+    </section>
+    </>
   );
 };
 
