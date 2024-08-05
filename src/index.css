@@ -15,3 +15,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scrollbar::-webkit-scrollbar {
+  width: 1px;
+  height: 10px;
+  background-color: #F5F5F5;
+}
+
+.scrollbar-bar::-webkit-scrollbar-thumb{
+  background-color: #000;
+  border: 2px solid #555555;
+}
