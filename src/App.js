@@ -36,7 +36,7 @@ function App() {
   return (
     <main className="bg-white">
       {/* Header */}
-      <div className="mb-10 flex flex-wrap justify-between bg-blue-800 p-10">
+      <div className="mb-10 flex flex-wrap justify-between bg-gradient-to-r from-violet-600 to-indigo-600 p-10">
         <h1 className="font-bold text-3xl text-white">AboutFilm</h1>
         <section className="w-96">
         <input
@@ -66,7 +66,7 @@ function App() {
                   />
                 </figure>
                 <div class="px-6 py-5 text-left h-full">
-                  <p class="text-base mb-4 bg-blue-400 p-3 rounded-md w-fit">{movie.release_date}</p>
+                  <p class="text-base font-bold text-white mb-4 bg-blue-400 p-3 rounded-md w-fit">{movie.release_date}</p>
                   <h1 class="text-xl font-bold">{movie.title}</h1>
                   
                 </div>

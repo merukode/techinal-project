@@ -47,7 +47,7 @@ const MovieDetails = () => {
   return (
     <>
     <section
-      className=" relative w-full h-screen bg-cover bg-center"
+      className=" relative w-full h-screen md:h-[70em] bg-cover bg-center"
       style={{
         backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})`,
       }}
