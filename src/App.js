@@ -5,6 +5,7 @@ import { setSearch } from "./features/searchSlice";
 
 function App() {
   const [movies, setMovies] = useState([]);
+  const [topRated, setTopRated] = useState([]);
   const search = useSelector((state) => state.search);
   const dispatch = useDispatch();
 
@@ -22,6 +23,19 @@ function App() {
 
         const data = await response.json();
         setMovies(data.results);
+
+        // Top Rated Movies
+        const topRated = await fetch(
+          "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
+          {
+            headers: {
+              Authorization: `Bearer ${process.env.REACT_APP_TMDB_BEARER_TOKEN}`,
+            },
+          }
+        );
+
+        const topRatedData = await topRated.json();
+        setTopRated(topRatedData.results);
         console.log("data", data.results);
       } catch (error) {
         console.error("Fetch error:", error);
@@ -51,7 +65,7 @@ function App() {
       <section className="p-10">
      
       {/* Popular Movies */}
-      <h1 className="mt-10 mb-10 text-3xl font-bold">Popular Movies</h1>
+      <h1 className="mt-10 mb-10 text-3xl font-bold">Popular & Upcoming Movies</h1>
       <section className=" md:flex  md:p-5 scrollbar-bar hide-scrollbar md:overflow-x-scroll gap-10"> 
         {filteredMovies.slice(0, 10).map((movie) => (
           <Link to={`/movie/${movie.id}`}>
@@ -68,6 +82,34 @@ function App() {
                 <div class="px-6 py-5 text-left h-full">
                   <p class="text-base font-bold text-white mb-4 bg-blue-400 p-3 rounded-md w-fit">{movie.release_date}</p>
                   <h1 class="text-xl font-bold">{movie.title}</h1>
+                  
+                </div>
+              </article>
+            </a>
+          </div>
+          </Link>
+        ))}
+      </section>
+      </section>
+      {/* Top Rated Movies */}
+      <section className="p-10">
+        <h1 className="mt-10 mb-10 text-3xl font-bold">Top Rated Movies</h1>
+      <section className=" md:flex  md:p-5 scrollbar-bar hide-scrollbar md:overflow-x-scroll gap-10">
+      {topRated.slice(0, 7).map((top) => (
+          <Link to={`/movie/${top.id}`}>
+          <div class="w-full md:w-52 h-full mb-5 border-black border-2 rounded-md hover:shadow-[8px_8px_0px_rgba(0,0,0,1)] bg-white">
+            <a href="" class="block cursor-pointer">
+              <article class="w-full h-full">
+                <figure class="w-full h-1/2 border-black border-b-2">
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500/${top.poster_path}`}
+                    alt={top.title}
+                    class="w-full h-52 object-cover"
+                  />
+                </figure>
+                <div class="px-6 py-5 text-left h-full">
+                  <p class="text-base font-bold text-white mb-4 bg-blue-400 p-3 rounded-md w-fit">{top.release_date}</p>
+                  <h1 class="text-xl font-bold">{top.title}</h1>
                   
                 </div>
               </article>
