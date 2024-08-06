@@ -47,18 +47,18 @@ const MovieDetails = () => {
   return (
     <>
     <section
-      className=" relative w-full h-screen md:h-[70em] bg-cover bg-center"
+      className=" relative md:w-full h-[80em] md:h-[70em] bg-cover bg-center"
       style={{
         backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})`,
       }}
     >
       
-      <div className="absolute md:flex gap-5 p-5 inset-0 bg-black/70">
+      <div className="absolute lg:flex gap-5 p-5 inset-0 bg-black/70">
         <Link to="/">
         <img className="w-10 bg-white rounded-full mb-5" src="/back-arrow.svg" alt="back arrow" />  
         </Link>
         <img
-          className="border-black border-2 rounded-md"
+          className="border-black md:w-[500px] md:h-[700px] bg-cover bg-center border-2 rounded-md" 
           src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
           alt={movie.title}
         />
@@ -76,7 +76,7 @@ const MovieDetails = () => {
     </section>
     <section className="bg-black p-10">
       <h1 className="text-white mb-10 text-2xl font-bold">Another Movie Reccomendation</h1>
-      <div className="md:flex gap-16">
+      <div className="md:flex overflow-scroll md:overflow-hidden gap-14">
         {reccomendation.slice(0, 7).map((movie) => (
           <Link to={`/movie/${movie.id}`}>
             <div className="w-full md:w-52 h-full mb-5 border-2 border-white text-white rounded-md hover:shadow-[8px_8px_0px_rgba(0,0,0,1)]">
@@ -86,12 +86,12 @@ const MovieDetails = () => {
                   <img
                     src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                     alt={movie.title}
-                    class="w-full h-52 object-cover"
+                    className="w-full h-52 object-cover" 
                   />
                 </figure>
-                <div class="px-6 py-5 text-left h-full">
-                  <p class="text-base mb-4 bg-blue-400 p-3 rounded-md w-fit">{movie.release_date}</p>
-                  <h1 class="text-xl font-bold">{movie.title}</h1>
+                <div className="px-6 py-5 text-left h-full">
+                  <p className="text-base mb-4 bg-blue-400 p-3 rounded-md w-fit">{movie.release_date}</p>
+                  <h1 className="text-xl font-bold">{movie.title}</h1>
                   
                 </div>
               </article>
