@@ -1,5 +1,5 @@
 # AboutFilms
-A simple films app made with ReactJS, Redux, and TailwindCSS.
+A simple films app made with ReactJS, Redux, and TailwindCSS. This app includes several things such as. Popular Movie, Movie Details and Search Movie.
 
 # Getting Started with Create React App
 
