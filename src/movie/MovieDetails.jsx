@@ -75,8 +75,8 @@ const MovieDetails = () => {
       </div>
     </section>
     <section className="bg-black p-10">
-      <h1 className="text-white mb-10 text-2xl font-bold">Another Movie Reccomendation</h1>
-      <div className="md:flex overflow-scroll md:overflow-hidden gap-14">
+      <h1 className="text-white mb-10 text-2xl font-bold">Another Movie Recommendation</h1>
+      <div className="md:flex overflow-scroll hide-scrollbar gap-14 p-8">
         {reccomendation.slice(0, 7).map((movie) => (
           <Link to={`/movie/${movie.id}`}>
             <div className="w-full md:w-52 h-full mb-5 border-2 border-white text-white rounded-md hover:shadow-[8px_8px_0px_rgba(0,0,0,1)]">
